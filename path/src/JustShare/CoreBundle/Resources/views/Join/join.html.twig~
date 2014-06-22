@@ -1,0 +1,150 @@
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  
+  <style>
+    .join-panel {     
+      border-color: hsl(203, 100%, 50%)
+    }
+
+    .join-panel > .panel-heading {
+      background: hsl(203, 100%, 50%);
+    }
+
+    .join-panel > .panel-heading > .collapse-link {
+      color:white
+    }
+
+    .join-panel > .panel-heading > .collapse-link:hover {
+      text-decoration:none
+    }
+
+    .form-control, .input-group {
+      width:50%;
+      margin:auto	
+    }
+  </style>
+{% endblock %}
+
+
+{% block body %}
+  
+  {{ form_start(form) }}
+
+  {# panneau contenant le formulaire #}
+  <div class="panel join-panel">
+    <div class="panel-heading">
+      <a class="collapse-link" data-toggle="collapse" href="#formulary">
+        <h1 class="panel-title">
+          <font>
+          Rechercher une activité</font> <span id="formulary-icon" class="glyphicon glyphicon-minus pull-right"></span>
+        </h1>
+      </a>
+    </div>
+    <div id="formulary" class="panel-collapse collapse in">
+      <div class="panel-body">
+        
+        {# FORMULAIRE #}
+        <div class="panel-group">
+
+          {# panneau Catégorie #}
+          <div class="panel join-panel">
+            <div class="panel-heading">
+              <a class="collapse-link" data-toggle="collapse" href="#categories">
+                <h4 class="panel-title">
+                  Catégorie <span class="glyphicon glyphicon-plus pull-right" id="categories-icon"></span>
+                </h4>
+              </a>
+            </div>
+            <div id="categories" class="panel-collapse collapse">
+              <div class="panel-body text-center">
+                <select class="form-control" id="multichoices-category">
+                  {% for categorie in categories %}
+                    <option value="{{ categorie.name }}">{{ categorie.name|title }}</option>
+                  {% endfor %}
+                </select>
+                {{ form_errors(form.categories) }}
+              </div>
+            </div>
+          </div>
+
+
+          {# panneau Date #}
+          {% set today = "now"|date("d-m-Y") %} 
+
+          <div class="panel join-panel">
+            <div class="panel-heading">
+              <a class="collapse-link" data-toggle="collapse" href="#date">
+                <h4 class="panel-title">
+                  Date <span class="glyphicon glyphicon-plus pull-right" id="date-icon"></span>
+                </h4>
+              </a>
+            </div>
+            <div id="date" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="input-group date" data-date="{{ today }}"
+                     data-date-format="dd-mm-yyyy"
+                     data-date-start-date="06-19-2014">
+                  <input type="text" class="form-control" value="{{ today }}" readonly="">
+                   <span class="input-group-btn">
+                     <button class="btn btn-default">
+                       <span class="glyphicon glyphicon-calendar"></span>
+                     </button>
+                   </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {# panneau Lieu #}
+          <div class="panel join-panel">
+            <div class="panel-heading">
+              <a class="collapse-link" data-toggle="collapse" href="#place">
+                <h4 class="panel-title">
+                  Lieu <span class="glyphicon glyphicon-plus pull-right" id="place-icon"></span>
+                </h4>
+              </a>
+            </div>
+            <div id="place" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ form_end(form) }}
+
+{% if activities is not null%}
+  <div class="well">
+  </div>
+{% endif %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  
+  <script type="text/javascript">
+    
+    $('.collapse-link').click(function() { 
+    var icon = $($(this).attr('href') + '-icon');
+    
+    if (icon.attr('class').indexOf('glyphicon-plus') > -1) {   // une des classes de l'icone
+    icon.removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+    else {
+    icon.removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    }
+    });
+
+    $('.input-group.date').datepicker({ autoclose: true,
+    todayHighlight: true, startDate:"d" });
+  </script> 
+{% endblock %}

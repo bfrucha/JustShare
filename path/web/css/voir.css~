@@ -1,0 +1,14 @@
+.events > .event > ul > li > span.title {
+    font:bold 2.5em "Times New Roman", Times, serif;
+    color: #ffc955
+}
+
+.events > .event > ul > li > span.subtitle {
+    font:italic 1em Georgia, serif;
+    color: #ffffff
+}
+
+.events > .event > ul > li > span.date {
+    font:bold 1em Arial, sans-serif;
+    color: #ffffff
+}

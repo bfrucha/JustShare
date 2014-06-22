@@ -1,0 +1,3 @@
+JustShareTestBundle:
+  resource: "@JustShareTestBundle/Resources/config/routing.yml"
+  prefix: /blogb 

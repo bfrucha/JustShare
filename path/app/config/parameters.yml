@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: justshare
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: smtp.laposte.net
+    mailer_user: b.fruchard
+    mailer_password: sunshine04
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt

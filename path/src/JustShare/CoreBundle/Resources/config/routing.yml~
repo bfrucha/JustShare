@@ -1,0 +1,34 @@
+justsharetest_index:
+  pattern: /
+  defaults: { _controller : JustShareTestBundle:Index:render }
+
+justsharetest_create:
+  pattern: /creer
+  defaults: { _controller : JustShareTestBundle:Create:render }
+
+
+justsharetest_join:
+  pattern: /participer
+  defaults: { _controller : JustShareTestBundle:Join:render }
+
+
+justsharetest_contact:
+  pattern: /contact
+  defaults: { _controller : JustShareTestBundle:Contact:render }
+
+
+
+
+
+
+justsharetest_modifier:
+  pattern: /modifier/{id}
+  defaults: { _controller : JustShareTestBundle:Test:modifier }
+  requirements: 
+    id: \d+
+
+justsharetest_supprimer:
+  pattern: /supprimer/{id}
+  defaults: { _controller : JustShareTestBundle:Test:supprimer }
+  requirements: 
+    id: \d+

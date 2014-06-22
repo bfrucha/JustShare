@@ -1,0 +1,166 @@
+<?php
+
+namespace JustShare\TestBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use JustShare\TestBundle\Entity\Article;
+use JustShare\TestBundle\Entity\Activity;
+use JustShare\TestBundle\Entity\Image;
+use JustShare\TestBundle\Entity\Commentaire;
+use JustShare\TestBundle\Entity\ArticleCompetence;
+use JustShare\TestBundle\Form\ArticleType;
+use JustShare\TestBundle\Form\ActivityType;
+use JustShare\TestBundle\Form\ArticleEditType;
+
+
+class TestController extends Controller {
+	public function indexAction($page) {
+		$articles = $this->getDoctrine()
+						  ->getManager()
+						  ->getRepository('JustShareTestBundle:Article')
+						  ->getArticles(3, $page);
+		
+		$nombrePage = ceil(count($articles) / 3);
+		$nombrePage = ($nombrePage < 1)?1:$nombrePage;
+
+		return $this->render("JustShareTestBundle:Test:index.html.twig",
+		array('articles' => $articles,
+		      'page' => $page,
+		      'nombrePage' => $nombrePage));
+	}
+
+	public function voirAction(Article $article) {
+		$liste_articleCompetence = $this->getDoctrine()
+										->getManager()
+										->getRepository("JustShareTestBundle:ArticleCompetence")
+										->findByArticle($article->getId());
+
+		return $this->render("JustShareTestBundle:Test:voir.html.twig",
+		array('article' => $article,
+		      'liste_articleCompetence' => $liste_articleCompetence));
+	}
+
+	public function ajouterAction() {
+		$activity = new Activity();
+		
+		$form = $this->createForm(new ActivityType, $activity);
+		
+		$request = $this->get('request');
+		
+		if($request->getMethod() == 'POST') {
+			$form->bind($request);
+			
+			if($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($activity);
+				$em->flush();
+				
+				return $this->render("JustShareTestBundle:Test:voir.html.twig", 
+				                     array('article'  => new Article(),
+										   'activity' => $activity));
+			}
+		}
+
+		return $this->render("JustShareTestBundle:Test:ajouter.html.twig",
+		                     array('form' => $form->createView()));
+	}
+
+	public function modifierAction(Article $article) {
+		$formBuilder = $this->createFormBuilder($article);
+		
+		$form = $this->createForm(new ArticleEditType, $article);
+	
+		$request = $this->get('request');
+		
+		if($request->getMethod() == 'POST') {
+			$form->bind($request);
+			
+			if($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($article);
+				$em->flush();
+				
+				$this->get('session')->getFlashBag()->add('info', 'Article bien modifié');
+				
+				return $this->render("JustShareTestBundle:Test:voir.html.twig", 
+				                     array('article' => $article));
+			}
+		}
+
+		return $this->render('JustShareTestBundle:Test:modifier.html.twig', 
+		                     array('article' => $article,
+							       'form' => $form->createView()));
+	}
+
+	public function supprimerAction(Article $article) {
+		$form = $this->createFormBuilder()->getForm();
+		
+		$request = $this->get('request');
+		
+		if($request->getMethod() === 'POST') {
+			$form->bind($request);
+
+			if($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				
+				$articleCompetences = $em->getRepository('JustShareTestBundle:ArticleCompetence')
+										 ->findByArticle($article);
+
+				foreach($articleCompetences as $ac) {
+					$em->remove($ac);
+				}
+				
+				$em->remove($article);
+				$em->flush();
+
+				$this->get('session')->getFlashBag()->add('info', 'Article bien supprimé');
+
+				return $this->redirect($this->generateUrl('justsharetest_accueil'));
+			}
+		}
+
+		return $this->render('JustShareTestBundle:Test:supprimer.html.twig',
+		                     array('article' => $article,
+							       'form' => $form->createView()));
+	}
+
+	public function menuAction($nombre) {
+		$articles = $this->getDoctrine()
+						 ->getManager()
+						 ->getRepository('JustShareTestBundle:Article')
+						 ->findBy(array(), 
+						 array('dateEdition' => 'desc'),
+						 $nombre,
+						 0);
+		
+		return $this->render("JustShareTestBundle:Test:menu.html.twig",
+		                     array('liste' => $articles));
+	}
+
+
+	private function findArticle($id) {
+		$em = $this->getDoctrine()->getManager();
+		
+		$article = $em->getRepository('JustShareTestBundle:Article')->find($id);
+
+		if ($article === null) {
+			throw $this->createNotFoundException('Article[id='.$id.'] inexistant');
+		}
+
+		return $article;
+	}
+
+
+	// to remove
+	public function errorAction() {
+		return $this->render('JustShareTestBundle:Test:error404.html.twig',
+		                     array('status_code' => 404));
+	}
+
+
+	public function participerAction() {
+		return $this->render('JustShareTestBundle:Test:join.html.twig');
+	}
+
+}

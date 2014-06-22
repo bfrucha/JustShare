@@ -1,0 +1,24 @@
+parameters:
+#    just_share_test.example.class: JustShare\CoreBundle\Example
+
+services:
+  just_share_test.antispam:
+    class: JustShare\CoreBundle\AntiSpam\JustShareAntiSpam
+    arguments: [@mailer, %locale%, 3]
+
+  just_share_test.validator.antiflood:
+    class: JustShare\CoreBundle\Validator\AntiFloodValidator
+    arguments: [@request, @doctrine.orm.entity_manager]
+    scope: request
+    tags:
+      - {name: validator.constraint_validator, alias: justsharetest_accueil}
+
+#  just_share_test.beta_listener:
+#    class: JustShare\CoreBundle\Beta\BetaListener
+#    arguments: ["2014-07-01", @kernel]
+#    tags: 
+#      - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+#    just_share_test.example:
+#        class: %just_share_test.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

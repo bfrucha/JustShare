@@ -1,0 +1,5 @@
+Trie = function() {
+    this.words = 0;
+    this.prefixes = 0;
+    this.children = [];
+};

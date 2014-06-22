@@ -1,0 +1,17 @@
+justsharecore_index:
+  pattern: /
+  defaults: { _controller : JustShareCoreBundle:Index:render }
+
+justsharecore_create:
+  pattern: /creer
+  defaults: { _controller : JustShareCoreBundle:Create:render }
+
+
+justsharecore_join:
+  pattern: /participer
+  defaults: { _controller : JustShareCoreBundle:Join:render }
+
+
+justsharecore_contact:
+  pattern: /contact
+  defaults: { _controller : JustShareCoreBundle:Contact:render }

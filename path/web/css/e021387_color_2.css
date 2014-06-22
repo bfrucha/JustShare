@@ -1,0 +1,36 @@
+.btn.create{
+    background-color: hsl(36, 100%, 50%);
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(hsl(36, 100%, 70%)), to(hsl(36, 100%, 50%)));
+    background-image: -moz-linear-gradient(top, hsl(36, 100%, 70%), hsl(36, 100%, 50%));
+    background-image: -ms-linear-gradient(top, hsl(36, 100%, 70%), hsl(36, 100%, 50%));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, hsl(36, 100%, 70%)), color-stop(100%,hsl(36, 100%, 50%)));
+    background-image: -webkit-linear-gradient(top, hsl(36, 100%, 70%), hsl(36, 100%, 50%));
+    background-image: -o-linear-gradient(top, hsl(36, 100%, 70%), hsl(36, 100%, 50%));
+    background-image: linear-gradient(hsl(36, 100%, 70%), hsl(36, 100%, 50%));
+    border-color: hsl(36, 100%, 50%) hsl(36, 100%, 50%) hsl(36, 100%, 50%);
+    color: #333;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.49);
+    -webkit-font-smoothing: antialiased;
+}
+
+.btn.join{
+    background-color: hsl(203, 100%, 50%);
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(hsl(203, 100%, 70%)), to(hsl(203, 100%, 50%)));
+    background-image: -moz-linear-gradient(top, hsl(203, 100%, 70%), hsl(203, 100%, 50%));
+    background-image: -ms-linear-gradient(top, hsl(203, 100%, 70%), hsl(203, 100%, 50%));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, hsl(203, 100%, 70%)), color-stop(100%,hsl(203, 100%, 50%)));
+    background-image: -webkit-linear-gradient(top, hsl(203, 100%, 70%), hsl(203, 100%, 50%));
+    background-image: -o-linear-gradient(top, hsl(203, 100%, 70%), hsl(203, 100%, 50%));
+    background-image: linear-gradient(hsl(203, 100%, 70%), hsl(203, 100%, 50%));
+    border-color: hsl(203, 100%, 50%) hsl(203, 100%, 50%) hsl(203, 100%, 50%);
+    color: #333;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.49);
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.rainbow{
+    background: linear-gradient(to right, hsl(36, 100%, 70%), hsl(203, 100%, 70%));
+}

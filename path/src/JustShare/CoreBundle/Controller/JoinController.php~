@@ -1,0 +1,28 @@
+<?php
+
+namespace JustShare\CoreBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class JoinController extends Controller {
+	public function renderAction() {
+		$em = $this->getDoctrine()->getManager();
+		$categories = $em->createQuery(
+			"SELECT c FROM JustShareCoreBundle:Categories c ORDER BY c.name ASC"
+		)->getResult();   // trie les catégories par ordre alphabétique
+		
+		
+		$form = $this->createFormBuilder()
+					 ->add('categories', 'choice')
+					 ->add('date', 'date')
+					 ->add('place', 'text')
+					 ->getForm();
+		
+		return $this->render("JustShareCoreBundle:Join:join.html.twig",
+                        	 array('categories' => $categories,
+								   'activities' => null,
+		                           'form' => $form->createView()));
+	}
+}
+
+?>

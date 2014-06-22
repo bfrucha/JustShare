@@ -1,0 +1,21 @@
+<div class="carousel-caption">
+  <font color="black">
+    <h3> Le lancement de {% include "::jsfont.html.twig" with {'size':4} %} est
+      bientôt arrivé ! </h3>
+      Qu'est ce que ça signifie ? Que vous allez pouvoir créer
+      et participer à de magnifiques activités ! <br/>
+      Dirigez-vous vers les pages suivantes pour commencer :
+  </font>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="btn-group-justified btn-group" style="margin-top:20px;">
+        <div class="btn-group">
+          <button class="btn btn-create user-button" onclick='window.location.href="{{ path('justsharetest_create') }}";'>Créer une activité</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-join user-button"  onclick='window.location.href="{{ path('justsharetest_join') }}";'>Participer à une activité</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

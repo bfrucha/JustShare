@@ -1,0 +1,46 @@
+<?php
+
+namespace JustShare\CoreBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class ActivityType extends AbstractType
+{
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('association', 'choice', array('choices' => array('asso1' => 'Association 1', 'asso2' => 'Association 2')))
+            ->add('creatorParticipating', 'choice', array('choices' => array(true => 'Oui', false => 'Non')))
+            ->add('name')
+            ->add('description')
+            ->add('place')
+            ->add('date')
+            ->add('minimumPrice')
+            ->add('maximumPrice')
+        ;
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'JustShare\CoreBundle\Entity\Activity'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'justshare_testbundle_activity';
+    }
+}

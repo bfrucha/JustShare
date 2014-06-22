@@ -1,0 +1,91 @@
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style media="screen" type="text/css">
+    .list{
+       text-align: center;
+       margin-top: 30px;
+       /* border: 2px solid gray */
+    }
+    
+    .list>li+li{
+	margin-top:0px;
+	margin-left:0
+    }
+
+    .list>li>a{
+       color: black
+    }
+  </style>
+{% endblock %}
+
+{% block main_menu %}
+  <div class="navbar navbar-default join-color">
+    <form class="navbar-form" role="search" id="search">
+          <div class="navbar-btn text-center">
+            <input type="text" class="form-control pagination-center" placeholder="Search" id="text-search">
+          </div>
+    </form>
+    
+
+    <div class="nav nav-divider"></div>
+    
+    <ul class="nav nav-pills nav-stacked list">
+      <li class="join-color"><a href="#" id="list-0" onclick="selectById('list-0')"></a></li>
+      <li class="btn-join-near-top"><a href="#" id="list-1" onclick="selectById('list-1')"></a></li> 
+      <li class="btn-join-selected"><a href="#" id="list-2" onclick="selectById('list-2')"></a></li>
+      <li class="btn-join-near-bottom"><a href="#" id="list-3" onclick="selectById('list-3')"></a></li>
+      <li class="join-color"><a href="#" id="list-4" onclick="selectById('list-4')"></a></li>
+    </ul>
+ 
+  </div>
+{% endblock %}
+
+
+
+{% block javascripts %}
+  {{ parent () }}
+  
+  <script type="text/javascript">
+    $('#search').submit(function() {
+       return false;
+    });
+
+  $('#search').keyup(function() {
+    select(document.getElementById('text-search').value);
+  });
+
+
+    function select(theme) {
+       var themes = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+
+       try {
+          var selectIndex = themes.indexOf(theme); // index de l'élément sélectionné
+
+          if (selectIndex > -1) {
+              var beginIndex = selectIndex - 2; // index du premier élément de la liste à modifier
+              
+              for(i = 0; i < 5; i++) {
+                  var text = "";
+
+                  if(beginIndex + i >= 0 && beginIndex + i < themes.length) {
+                      text = themes[beginIndex + i]; 
+                  }
+
+                  var elt = document.getElementById('list-' + i);
+                  elt.innerHTML = text;
+                  elt.href = '#' + text;
+              }
+          }
+      } catch(error) {
+          alert('Caught : ' + error);
+      }
+    }
+
+
+    function selectById(id) {
+        select(document.getElementById(id).innerHTML);
+    }
+  </script>
+{% endblock %}

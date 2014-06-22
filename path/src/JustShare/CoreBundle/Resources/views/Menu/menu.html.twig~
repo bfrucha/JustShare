@@ -1,0 +1,32 @@
+<div class="navbar" role="navigation">
+  {% if app.debug %}
+    <font color="red">Actions possibles</font>
+  {% endif %}
+  <div class="btn-group-vertical nav-justified navbar-btn">
+    <button class="btn btn-create user-button" onclick='window.location.href="{{ path('justsharetest_create') }}";'>Créer une activité</button>
+    <button class="btn btn-join user-button" onclick='window.location.href="{{ path('justsharetest_join') }}";'>Participer à une activité</button>
+  </div>
+
+  {% if app.debug %}
+    <font color="red">Renseignements</font>
+  {% endif %}
+  <div class="btn-group-vertical nav-justified navbar-btn">
+    <button class="btn btn-default">Qu'est ce que 
+      {% include "::jsfont.html.twig" with {'size': 2} %} ?</button> 
+      <button class="btn btn-default">Qui sommes-nous ?</button> 
+  </div>
+
+  {% if app.debug %}
+    <font color="red">Contact</font>
+  {% endif %}
+  <div class="btn-group-vertical nav-justified navbar-btn">
+    <button class="btn btn-default" onclick='window.location.href="{{ path('justsharetest_contact') }}";'>Nous contacter</button>
+  </div>
+
+  {% if app.debug %}
+    <font color="red">Aide</font>
+  {% endif %}
+  <div class="btn-group-vertical nav-justified navbar-btn">
+    <button class="btn btn-default">Besoin d'aide ?</button>
+  </div>
+</div>

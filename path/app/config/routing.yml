@@ -1,0 +1,7 @@
+gibbons_masques_core:
+    resource: "@GibbonsMasquesCoreBundle/Resources/config/routing.yml"
+    prefix:   /gibbons
+
+just_share_core:
+    resource: "@JustShareCoreBundle/Resources/config/routing.yml"
+    prefix:   /

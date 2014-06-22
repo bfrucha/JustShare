@@ -1,0 +1,32 @@
+{% extends "JustShareCoreBundle::layout.html.twig" %}
+
+
+{% block title %}
+  Lecture d'un article - {{ parent() }}
+{% endblock %}
+
+{% block justsharetest_body %}
+
+  {% include "JustShareCoreBundle:Test:article.html.twig" %}
+
+  <p>
+    <a href="{{ path('justsharetest_accueil') }}">
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        Retour à la liste
+      </button>
+    </a>
+    <a href="{{ path('justsharetest_modifier', {'id': article.id}) }}" class="btn">
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-edit"></span>
+        Modifier l'article
+      </button>
+    </a>
+    <a href="{{ path('justsharetest_supprimer', {'id': article.id})}}" class="btn">
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-trash"></span>
+        Supprimer l'article
+      </button>
+    </a>
+
+{% endblock %}

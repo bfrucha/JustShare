@@ -1,0 +1,22 @@
+{% extends "JustShareCoreBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    .form-list>li>div{
+       margin-top:20px
+    }
+  </style>
+{% endblock %}
+
+{% block title %}
+  Ajouter un article - {{ parent() }}
+{% endblock %}
+
+
+{% block justsharecore_body %}
+  {# <h2> Ajouter un article </h2> #}
+
+  {% include "JustShareCoreBundle:Create:form.html.twig" %}
+
+{% endblock %}

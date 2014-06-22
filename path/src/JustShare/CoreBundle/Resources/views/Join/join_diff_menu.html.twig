@@ -1,0 +1,155 @@
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style media="screen" type="text/css">
+    .list{
+       text-align: center;
+       margin-top: 30px;
+       /* border: 2px solid gray */
+    }
+    
+    .list>li+li{
+	margin-top:0px;
+	margin-left:0
+    }
+
+    .list>li>a{
+       color: black
+    }
+  </style>
+{% endblock %}
+
+{% block main_menu %}
+  <ul class="nav nav-tabs">    {# onglets du menu #}
+    <li class="active"><a href="#list" data-toggle="tab"><span class="glyphicon glyphicon-hand-up"></span></a></li>
+    <li><a href="#search" data-toggle="tab"><span class="glyphicon glyphicon-search"></span></a></li>
+  </ul>
+
+  <div class="tab-content">    {# panneaux liés à chaque onglet #}
+
+    {# premier panneau sous forme de liste #}
+    <div class="tab-pane active" id="list">
+      <div class="navbar navbar-default join-color">
+        <form class="navbar-form text-center categories-selection">
+          <select name="category" class="form-control" id="multichoices-category">
+            {% for categorie in categories %}
+              <option value="{{ categorie.name }}">{{ categorie.name|title }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn btn-default btn-right" onClick="multichoicesSelection();">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+    
+
+    {# deuxième panneau sous forme de saisie manuelle #}
+    <div class="tab-pane" id="search">
+      <div class="navbar navbar-default join-color">
+        <form class="navbar-form categories-selection" role="search" id="search-form">
+          <input type="text" class="form-control pagination-center" placeholder="Rechercher une catégorie" id="text-search"/>
+          <button class="btn btn-default btn-right" onClick="showSelection();">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </form>
+        
+        
+        <div class="nav nav-divider"></div>
+        
+        <ul class="nav nav-pills nav-stacked list">
+          <li class="join-color"><a href="#" id="list-0" onclick="selectById('list-0')"></a></li>
+          <li class="btn-join-near-top"><a href="#" id="list-1" onclick="selectById('list-1')"></a></li> 
+          <li class="btn-join-selected"><a href="#" id="list-2" onclick="selectById('list-2')"></a></li>
+          <li class="btn-join-near-bottom"><a href="#" id="list-3" onclick="selectById('list-3')"></a></li>
+          <li class="join-color"><a href="#" id="list-4" onclick="selectById('list-4')"></a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block body %}
+  <div id="categories" style="display:none;">   {# inscrit les catégories dans le code html pour les récupérer en javascript #} 
+    {% for categorie in categories %}
+      {{ categorie.name }} {% if not loop.last %},{% endif %}
+    {% endfor %}
+  </div>
+
+  <div id="activities">
+  </div>
+{% endblock %}
+
+
+{% block javascripts %}
+  {{ parent () }}
+  
+  <script src="{{ asset('js/trie.js') }}" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    // tableau réunissant les différentes catégories
+    var categories = document.getElementById('categories').innerHTML.split(",") ;
+    var trie = new Trie();
+    
+    for(var index in categories) {  // ajout des catégories dans l'arbre de préfixes
+       categories[index] = categories[index].trim().toLowerCase(); 
+       trie.insert(categories[index]);
+    }
+
+
+    function createTree(categories) {
+    }
+
+    $('.categories-selection').submit(function() {
+       return false;
+    });
+
+    $('#search-form').keyup(function() {
+       select(document.getElementById('text-search').value);
+    });
+
+
+    function select(cat) {
+       try {
+          var selectIndex = categories.indexOf(trie.find(cat)); // index de l'élément sélectionné
+
+          if (selectIndex > -1) {
+              var beginIndex = selectIndex - 2; // index du premier élément de la liste à modifier
+              
+              for(i = 0; i < 5; i++) {
+                  var text = "";
+
+                  if(beginIndex + i >= 0 && beginIndex + i < categories.length) {
+                      text = categories[beginIndex + i]; 
+                  }
+
+                  var elt = document.getElementById('list-' + i);
+                  elt.innerHTML = text;
+                  elt.href = '#' + text;
+              }
+          }
+      } catch(error) {
+          alert('Caught : ' + error);
+      }
+    }
+
+
+    function selectById(id) {
+        select(document.getElementById(id).innerHTML);
+    }
+
+    function showSelection() {
+       var text = document.getElementById('list-2').innerHTML;
+       document.getElementById('activities').innerHTML = "Le thème que vous avez choisi est : " + text;
+    }
+
+    function multichoicesSelection() {
+       var text = $('#multichoices-category').val();
+       document.getElementById('activities').innerHTML = "Le thème que vous avez choisi est : " + text;
+    }
+
+  </script>
+{% endblock %}

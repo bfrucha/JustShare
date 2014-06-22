@@ -1,0 +1,31 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block body %} 
+    {# message de validation de modification d'un article #}
+    {% for info in app.session.flashbag.get('info') %}
+      <i> {{ info }}  </i><br/>
+    {% endfor %}
+    
+    {% block justsharetest_body %}
+    {% endblock %}
+    
+    
+    {# <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a href="{{ path('justsharetest_ajouter') }}">
+          <button class="sample btn btn-create custom large" data-h="36" data-s="100" data-l="50", data-p="15">Créer une activité</button>
+        </a>
+      </div>
+      
+      <div class="btn-group">
+        <a href="{{ path('justsharetest_ajouter') }}">
+          <button class="sample btn btn-join custom large" data-h="193" data-s="32" data-l="64", data-p="15">Participer à une activité</button>
+        </a>
+      </div>
+    </div>    #}
+{% endblock %}
+  

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <title> {% block title %}JustShare{% endblock %} </title>
+  </head>
+  
+  {% block stylesheets %}
+    {% stylesheets filter='?yui_css, cssrewrite'
+                   'css/bootstrap.min.css' 
+                   'css/color.css'
+                   'css/navbar-fixed-top.css'
+    %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+    {% endstylesheets %}
+  {% endblock %}
+
+  <body>
+    
+    <div class="container">
+      <div class="navbar navbar-default navbar-fixed-top rainbow" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('justsharecore_index') }}">
+              <img src="{{ asset('img/logo_js_s.png') }}" alt="Logo" style="margin-top: -12px; padding: 0px;"/>
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="{{ path('justsharecore_index') }}">Accueil</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateur<b class="caret"></b></a>
+                <ul class="dropdown-menu" id="user-menu" style="width:330px;">
+                  <li><a href="">Se connecter</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    {% if app.debug %}
+                      <a href="#">
+                        <font color="red"> Espace réservé à un utilisateur connecté </font>
+                      </a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+      
+      
+      {# menu principal affiché à gauche de la fenêtre #}
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="sidebar-nav">
+              {% block main_menu %}
+                {% render(controller("JustShareCoreBundle:Menu:render")) %}
+              {% endblock %}
+          </div>
+        </div>
+        <div class="well col-sm-9">
+          {% block body %}
+          {% endblock %}
+        </div>
+      </div> 
+      
+      
+      <hr/>
+      
+      <footer class="text-center">
+        <p>{% include "::jsfont.html.twig" with {'size' : '2'} %} © 2014 </p>
+      </footer>
+      
+    </div>
+    
+    
+    {% block javascripts %}
+      {% javascripts filter='?yui_js' 
+                     'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
+                     'js/bootstrap.min.js'
+      %}
+        <script src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+    {% endblock %}
+  </body>
+</html>

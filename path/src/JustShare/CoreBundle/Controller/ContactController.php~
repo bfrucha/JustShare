@@ -1,0 +1,20 @@
+<?php
+
+namespace JustShare\CoreBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+
+class ContactController extends Controller { 
+	public function renderAction() {
+		$form = $this->createFormBuilder()
+					 ->add('email', 'email')
+					 ->add('text', 'textarea')
+					 ->getForm();
+		return $this->render("JustShareCoreBundle:Contact:contact.html.twig",
+		array('form' => $form->createView()));
+	}
+} 
+
+
+?>

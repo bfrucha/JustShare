@@ -1,0 +1,67 @@
+{% extends "JustShareCoreBundle::layout.html.twig" %}
+
+
+{% block stylesheets %}
+  {{ parent() }}
+  
+  <style>
+    .list-unstyled{
+      margin-top:20px;
+    }
+    
+    .request-textarea {
+    width:100%;
+    height:100%
+    }
+
+    .request-col{
+      margin-top:10px;
+      height:200px
+    }
+  </style>
+{% endblock %}
+
+{% block justsharecore_body %}
+{% if send %}
+  Votre message a bien été envoyé. Vous devriez recevoir un accusé de réception
+  sous peu à l'adresse que vous avez spécifiée.
+{% else %}
+  <h3>Comment nous contacter ?</h3>
+  Rien de plus simple ! Vous pouvez nous envoyer un mail directement depuis votre
+  adresse personelle à l'adresse suivante :
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h3><span class="label rainbow">
+          <a href="mailto:{{ email_contact }}">{{ email_contact }}</a>
+      </span></h3>
+    </div>
+  </div>
+  
+  <br/>
+  Vous pouvez de même remplir les champs suivants en
+  précisant une adresse à laquelle nous pourrons vous contacter en
+  retour :
+  {{ form_start(form) }}
+    <div class="row" style="margin-top:20px">
+      <div class="col-md-8 col-md-offset-2">
+        <ul class="list-unstyled">
+          <li>
+            <div class="input-group col-md-8 col-md-offset-2">
+              <span class="input-group-addon">@</span>
+              {{ form_widget(form.email, {'attr' : {'class': 'form-control', 'placeholder':'exemple@mail.com'}}) }}
+            </div>
+          </li>
+          <li>
+            <div class="col-md-10 col-md-offset-1 request-col">
+              {{ form_widget(form.text, {'attr': {'class':'request-textarea', 'placeholder':'Entrez votre texte ici'}}) }}
+            </div>
+          </li>
+        </ul>
+        <div class="col-md-2 col-md-offset-10" style="margin-top:10px;">
+          <input type="submit" class="btn btn-primary" value="Envoyer">
+        </div>
+      </div>
+    </div>{# row #}
+  {{ form_end(form) }}
+{% endif %}
+{% endblock %}

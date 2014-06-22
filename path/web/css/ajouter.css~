@@ -1,0 +1,233 @@
+html {
+    width:100%;
+    height:100%;
+    background:black
+}
+
+
+body {
+    margin:auto;
+    margin-top:1%;
+    background:transparent;
+}
+
+.main-panel {
+    position:relative;
+    width:100%;
+    border: 3px solid #ffffff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: #888;
+}
+
+.main-panel>h1{
+    font:bold "Arial Black", "Arial Bold", Gadget, sans-serif;
+    width:100%;
+    margin-top:0;
+    padding:1%;
+    text-align:center;
+    background:white;
+    color:#000;
+}
+
+.main-panel > .well{
+    height:80%;
+    background:transparent
+}
+
+.main-table{
+    width:60%;
+    margin:auto;
+    margin-top:5%;
+    margin-bottom:5%;
+    border-collapse:separate;
+}
+
+
+.main-table th:last-child {
+    border: 4px solid #000;
+    border-bottom:none;
+    border-top-left-radius:10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius:10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+    padding:1%;
+    text-align:center;
+    background:white;
+    font:1.5em "Arial Black", "Arial Bold", Gadget, sans-serif;
+    color:black;
+}
+
+.main-table td{
+    border:none;
+    padding:10px;
+    color:black;
+}
+
+
+.main-table td:first-child {
+    font:1.5em Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    border-left:4px solid #000;
+    background:white;
+    color:#000;
+    text-align:right;
+    width:10%
+}
+
+.main-table td:last-child {
+    border-left:4px solid #000;
+    border-right:4px solid #000;
+    background:white
+}
+
+.main-table #first-attr-label {
+    border-top:4px solid #000;
+    border-top-left-radius:10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+}
+
+.main-table #first-attr-widget {
+    border-top:4px solid #000;
+}
+
+.main-table #last-attr-label {
+    border-bottom:4px solid #000;
+    border-bottom-left-radius:10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+}
+
+
+.main-table tr:last-child > td:last-child {
+    border-bottom:4px solid #000;
+    border-bottom-right-radius:10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-bottom-right-radius: 10px;
+}
+
+.buttons {
+    position:absolute;
+    bottom:0px;
+    right:0px;
+}
+
+.btn-left {
+    border-bottom-left-radius:0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -moz-border-bottom-left-radius: 0px;
+}
+
+.btn-right {
+    border-top-right-radius:0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-top-right-radius: 0px;
+    border-bottom-right-radius:8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -moz-border-bottom-right-radius: 8px;
+}
+
+
+
+
+
+/* style des widgets du formulaire */
+#gibbonsmasques_corebundle_evenement_titre,
+#gibbonsmasques_corebundle_evenement_lieu,
+#gibbonsmasques_corebundle_evenement_liens {
+    border:2px solid black;
+    border-radius:10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background:white;
+    width:70%;
+    height:2em;
+    padding:3px;
+    resize:none;
+}
+
+
+#gibbonsmasques_corebundle_evenement_sousTitre,
+#gibbonsmasques_corebundle_evenement_artistes
+{
+    border:2px solid black;
+    border-radius:10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background:white;
+    width:90%;
+    height:4em;
+    padding:3px;
+    resize:none;
+}
+
+
+#gibbonsmasques_corebundle_evenement_resume {
+    border:2px solid black;
+    border-radius:10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background:white;
+    width:90%;
+    height:6em;
+    padding:3px;
+    resize:none;
+}
+
+
+#gibbonsmasques_corebundle_evenement_date {
+    border:2px solid black;
+    border-top-left-radius:10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-bottom-left-radius:10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    height:2.3em;
+    padding:3px;
+    resize:none;
+}
+
+/* continuité du champ date */
+.input-group-addon {
+    background:white;
+    border:2px solid black;
+    border-top-right-radius:10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+    border-bottom-right-radius:10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-bottom-right-radius: 10px;
+}
+
+.input-group.date {
+    width:50%
+}
+
+
+
+
+#gibbonsmasques_corebundle_evenement_image {
+    
+}
+
+
+/* style de l'aperçu (seulement les bordures, le reste est fidèle */
+#apercu .panel {
+    width:70%;
+    margin:auto;
+    margin-bottom:5%;
+    border: 4px solid black;
+    border-radius:10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#apercu .panel .panel-heading,
+#apercu .panel .panel-footer{
+    background:black;
+    color:#fff;
+}

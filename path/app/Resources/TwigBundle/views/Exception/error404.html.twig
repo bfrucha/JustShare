@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        {# pas moyen d'utiliser assetic ici #}
+        <link rel="stylesheet" href="/Symfony/web/css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/Symfony/web/css/color.css" type="text/css"/>
+        
+        <title>Erreur: {{ status_text }}</title>
+    </head>
+    <body>
+      <div class="container">
+        <div class="jumbotron rainbow">
+          <div class="text-center">
+            <img src="{{ asset('img/404.png') }}" alt="{{ status_code }}"/>
+          </div>
+          <hr/>
+          <div class="well well-sm">
+            La page que vous avez demandée est introuvable. <br/>
+            S'il vous semble que c'est un problème à signaler,
+            veuillez envoyer un mail à l'adresse suivante
+            : <a href="mailto:{{ email_contact }}">{{ email_contact }}</a>
+          </div>
+          <div class="text-right">
+            <a href="{{ path('justsharetest_accueil') }}">
+              <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-arrow-left"></span> 
+                Retour à l'accueil
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
